@@ -27,7 +27,7 @@ const Contact = () => {
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
 
-  const apiBaseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+  const apiBaseUrl = "https://portfolio-yfur.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
