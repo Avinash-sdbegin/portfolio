@@ -29,11 +29,12 @@ if (!EMAIL_USER || !EMAIL_PASS) {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: EMAIL_USER,
-    pass: EMAIL_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
+  port: 587,
+  secure: false,
 });
-
 app.use(
   cors({
     origin: (origin, callback) => {
