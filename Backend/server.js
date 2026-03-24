@@ -25,14 +25,18 @@ const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value |
 if (!EMAIL_USER || !EMAIL_PASS) {
   console.warn("EMAIL_USER or EMAIL_PASS missing in .env. Email route will fail until set.");
 }
-
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // VERY IMPORTANT (TLS, not SSL)
   auth: {
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
-  family: 4,
+  family: 4, // keep this (forces IPv4)
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 app.use(
   cors({
